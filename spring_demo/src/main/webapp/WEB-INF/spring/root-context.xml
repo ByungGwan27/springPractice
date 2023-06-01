@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd">
+	
+	<!-- Root Context: defines shared resources visible to all other web components -->
+	<!-- 6.01 12:48  bean등록 방법-->
+	<!-- 주입되어야 할 bean 등록 -->
+	<!-- <bean id="tv" class="com.yedam.app.java.SamsungTV" /> -->	
+	
+	<!-- 새로운 bean을 만들고 위치 지정(setter) -->
+	<!-- <bean id="classRoom" class="">
+		<property name="inTV" ref="tv" />
+	</bean> -->
+</beans>
