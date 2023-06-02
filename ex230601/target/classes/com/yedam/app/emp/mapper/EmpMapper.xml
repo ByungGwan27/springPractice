@@ -3,11 +3,123 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.yedam.app.emp.mapper.EmpMapper">
-	<select id="selectOne" resultType="com.yedam.app.emp.service.EmpVO" >
+	<sql id="empWhere">
+		<where>
+			 <if test="departmentId != null and departmentId != '' ">
+			 	AND department_id IN
+			 	<!-- collection은 get 메서드 -->
+			 	<foreach open="(" close=")"
+			 			 collection="deptArr" item="dept" separator=",">
+			 	<!-- <foreach open="(" collection="deptArr" item="dept" separator=","> -->
+			 		#{dept}
+			 	</foreach>
+			 </if>
+			 <if test="firstName != null and firstName != '' ">
+			 	<!-- AND first_name LIKE '%' || #{firstName} || '%' -->
+			 	AND first_name LIKE '%${firstName}%'
+			 </if>
+		 </where>
+	</sql>
+	
+	<insert id="insertEmp" parameterType="empVO">
+		<selectKey keyProperty="employeeId"
+				   resultType="string"
+				   order="BEFORE">
+			SELECT NVL(MAX(employee_id), 0) + 1 FROM employees
+		</selectKey>
+	
+		INSERT INTO employees(
+			EMPLOYEE_ID,
+			<if test="firstName != null and firstName != '' ">
+				first_NAME,
+			</if>
+			LAST_NAME,
+			EMAIL,
+			HIRE_DATE,
+			<if test="departmentId != null and departmentId != '' ">
+				department_id,
+			</if>
+			JOB_ID)
+		VALUES(
+				<!-- 위에 key값 사용 -->
+				#{employeeId},
+				<if test="firstName != null and firstName != '' ">
+					#{firstName},
+				</if>
+				#{lastName},
+				#{email},
+				#{hireDate},
+				<if test="departmentId != null and departmentId != '' ">
+					#{departmentId},
+				</if>
+				#{jobId}
+				)
+	</insert>
+	
+	<update id="updateEmp">
+		UPDATE employees SET
+			   first_name = #{firstName},
+			   last_name = #{lastName},
+			   email = #{email}
+		WHERE employee_id = #{employeeId}
+	</update>
+	
+	<delete id="deleteEmp">
+		DELETE FROM employees
+		 WHERE employee_id = #{employeeId}
+	</delete>
+	
+	<select id="selectCount" resultType="int">
+		select count(*) FROM employees
+		<include refid="empWhere"></include>
+	</select>
+	
+	<select id="selectList" resultType="EmpVO">
 		SELECT employee_id,
 			   first_name,
-			   last_name
+			   last_name,
+			   department_id
+		 FROM employees
+		<include refid="empWhere"></include>
+				 
+		 <choose>
+		 	<when test="orderColumn != null and orderColumn != '' ">
+		 		ORDER BY ${orderColumn}
+		 	</when>
+		 	<otherwise>
+		 		ORDER BY employee_id
+		 	</otherwise>
+		 </choose> 
+	</select>
+	
+	<select id="selectOne" resultType="EmpVO" >
+		SELECT employee_id,
+			   first_name,
+			   last_name,
+			   email,
+			   phone_number,
+			   TO_CHAR(hire_date, 'yyyy-mm-dd') HIRE_DATE,
+			   job_id,
+			   salary,
+			   commission_pct,
+			   manager_id,
+			   department_id
 		 FROM employees
 		WHERE employee_id = #{empNo}
+	</select>
+	
+	<!-- 컬럼명이 key -->
+	<select id="selectJobs" resultType="map">
+		SELECT job_id "jobId",
+			   job_title "jobTitle"
+		FROM jobs
+		ORDER BY job_title
+	</select>
+	
+	<select id="selectDepartments" resultType="map">
+		SELECT department_id "departmentId",
+			   department_name "departmentName"
+		FROM departments
+		ORDER BY department_name
 	</select>
 </mapper>

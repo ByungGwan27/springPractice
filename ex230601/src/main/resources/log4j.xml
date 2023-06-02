@@ -32,9 +32,22 @@
 		<level value="info" />
 	</logger>
 
-	<!-- Root Logger -->
+	<!--  -->
+	<logger name="jdbc.audit">
+		<level value="warn" />
+	</logger>
+
+	<logger name="jdbc.resultset">
+		<level value="warn" />
+	</logger>
+
+	<logger name="jdbc.connection">
+		<level value="warn" />
+	</logger>
+	
+	<!-- Root Logger 항상 마지막-->
 	<root>
-		<priority value="warn" />
+		<priority value="info" />
 		<appender-ref ref="console" />
 	</root>
 	

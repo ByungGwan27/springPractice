@@ -4,7 +4,17 @@ import lombok.Data;
 
 @Data
 public class EmpVO {
-	String employee_id;//마이바티스 셋팅 안할거라 '_'사용
-	String first_name;
-	String last_name;
+	String employeeId;//마이바티스 셋팅 안할거라 '_'사용
+	String firstName;
+	String lastName;
+	String email;
+	String hireDate;
+	String jobId;
+	String departmentId;
+	String orderColumn;
+	
+	//체크박스 타입 값 넘겨주기
+	String[] getDeptArr() {
+		return departmentId.split(",");
+	}
 }
