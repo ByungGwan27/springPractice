@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yedam.app.dept.mapper.DeptInfoMapper">
+	<!-- 공통 -->
+	<sql id="deptSelect">
+		SELECT department_id
+			   , department_name
+			   , manager_id
+			   , location_id
+		FROM departments
+	</sql>
+
+	<!-- 전체조회, 'resultType' 타입 써주는걸 권장-->
+	<select id="selectAllDept" resultType="DeptInfoVO">
+		<include refid="deptSelect" />
+		ORDER BY department_id DESC
+	</select>
+
+	<!-- 단건조회 -->
+	<!-- 무조건 1건만, 2건 이상의 경우 전체 조회를 응용(인터페이스 문제 때문에) -->	
+	<select id="selectOneDept" resultType="DeptInfoVO">
+		<include refid="deptSelect" />
+		WHERE department_id = #{departmentId}
+	</select>
+	
+	<!-- insert, update, delete 섞어 사용해도 상관은 없음 하지만 mybatis 몇 구문이 특정 항목만 지원하는게 있음, ex) selectKey : insert, update에만 지원 -->
+	<!--  결과는 무조건int, 대신 파라미터타입은 설정해주자 -->
+	<!-- 등록 -->
+	<insert id="insertDeptInfo" parameterType="DeptInfoVO">
+		<selectKey keyProperty="departmentId"
+				   resultType="int"
+				   order="BEFORE">
+			SELECT NVL(MAX(department_id), 0) + 10
+			FROM departments
+		</selectKey>
+		INSERT INTO departments(
+				department_id,
+				department_name,
+			    manager_id,
+			    location_id)
+		VALUES(
+				#{departmentId}
+				, #{departmentName}
+				, #{managerId}
+				, #{locationId}
+				)
+	</insert>
+		
+	<!-- 수정 -->
+	<update id="updateDeptInfo" parameterType="DeptInfoVO">
+		UPDATE departments
+		 <set>
+		  <if test="departmentName != null and !departmentName.equals('')">
+		  	department_name = #{departmentName}
+		  </if>
+		  <if test="managerId > 0">
+		  	, manager_id = #{managerId}
+		  </if>
+		  <if test="locationId > 0">
+		  	, location_id = #{locationId}
+		  </if>
+		  <!-- 전체 null값이 들어 갈 수 있기 때문에, 실행 될 수 있도록 한 개 정도는 값이 강제로 들어가게 만들어 주자 -->
+		  <!-- <= : lte 비교 연산자를 사용하기 위해 -->
+		  <if test="locationId lte 0">
+		  	, location_id = 1000
+		  </if>
+		 </set>
+		 WHERE department_id = #{departmentId}
+	</update>
+	
+	<!-- 삭제 -->
+	<delete id="deleteDeptInfo" parameterType="DeptInfoVO">
+		DELETE FROM departments
+		WHERE department_id = #{departmentId}
+	</delete>	
+</mapper>

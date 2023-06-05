@@ -8,6 +8,10 @@
 		SELECT * FROM DEPARTMENTS ORDER BY department_id 
 	</select>
 	
+	<select id="readDepartmentsOne">
+		SELECT * FROM departments WHERE department_id = #{departmentId}
+	</select>
+	
 	<insert id="createDepartments">
 		<selectKey keyProperty="departmentId"
 				   resultType="string"
@@ -47,7 +51,7 @@
 	
 	<delete id="deleteDepartments">
 		DELETE FROM DEPARTMENTS
-		WHERE department_id = #{departmentId};
+		WHERE department_id = #{departmentId}
 	</delete>
 	
 </mapper>
