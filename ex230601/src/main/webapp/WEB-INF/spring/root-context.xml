@@ -9,41 +9,4 @@
 
 	<!-- Root Context: defines shared resources visible to all other web components -->
 
-	<!-- datasource connection pool -->
-	<bean id="hikariConfig" class="com.zaxxer.hikari.HikariConfig">
-		<property name="driverClassName"
-			value="net.sf.log4jdbc.sql.jdbcapi.DriverSpy" />
-		<property name="jdbcUrl"
-			value="jdbc:log4jdbc:oracle:thin:@127.0.0.1:1521:xe" />
-		<property name="username" value="hr" />
-		<property name="password" value="hr" />
-	</bean>
-	
-	<!-- Connection pull을 만듦 -->
-	<bean id="dataSource" class="com.zaxxer.hikari.HikariDataSource"
-		destroy-method="close">
-		<constructor-arg ref="hikariConfig" />
-	</bean>
-	
-	<!-- mybatis SqlSessionFactory -->
-	<bean class="org.mybatis.spring.SqlSessionFactoryBean">
-		<property name="dataSource" ref="dataSource" />
-		<!-- 6.02 마이바시트 설정 후 아래 구문 추가. 설정 파일 읽어오기 -->
-		<property name="configLocation" value="classpath:mybatis-config.xml" />
-	</bean>
-	
-	<!-- 06.07Transaction Manager 설정 -->
-	<bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
-		<property name="dataSource" ref="dataSource" />
-	</bean>
-
-	
-	<!-- 06.07 namespaces:tx -->
-	<tx:annotation-driven/>
-	<!-- <mybatis-spring:scan base-package="com.yedam.app" /> -->
-	
-	<!-- mapper scan -->
-	<mybatis-spring:scan
-		base-package="com.yedam.app" />
-
 </beans>
