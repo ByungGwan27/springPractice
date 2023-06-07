@@ -7,4 +7,10 @@
 		
 	<aop:aspectj-autoproxy/>
 
+	<bean id="myCat" class="com.yedam.app.aop.Cats">
+		<property name="name" value="호랑이"/>
+		<property name="age" value="1"/>
+		<property name="color" value="yellow"/>
+	</bean>
+	
 </beans>

@@ -2,8 +2,10 @@
 <beans xmlns="http://www.springframework.org/schema/beans"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xmlns:mybatis-spring="http://mybatis.org/schema/mybatis-spring"
+	xmlns:tx="http://www.springframework.org/schema/tx"
 	xsi:schemaLocation="http://mybatis.org/schema/mybatis-spring http://mybatis.org/schema/mybatis-spring-1.2.xsd
-		http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd">
+		http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.3.xsd">
 
 	<!-- Root Context: defines shared resources visible to all other web components -->
 
@@ -30,7 +32,18 @@
 		<property name="configLocation" value="classpath:mybatis-config.xml" />
 	</bean>
 	
+	<!-- 06.07Transaction Manager 설정 -->
+	<bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+		<property name="dataSource" ref="dataSource" />
+	</bean>
+
+	
+	<!-- 06.07 namespaces:tx -->
+	<tx:annotation-driven/>
+	<!-- <mybatis-spring:scan base-package="com.yedam.app" /> -->
+	
 	<!-- mapper scan -->
-	<mybatis-spring:scan base-package="com.yedam.app.**.mapper" />
+	<mybatis-spring:scan
+		base-package="com.yedam.app" />
 
 </beans>

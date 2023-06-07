@@ -12,7 +12,7 @@ public class LogAdvice {
 	
 	//포인트컷 : 조인포인트(비즈니스 로직과 관련된 메소드) 중에서 Advice(공통코드)가 적용될 메소드
 	@Pointcut("within(com.yedam.app.aop.*)")
-	public void appPointCut() {}
+	public void allPointcut() {}
 	
 	//Weaving : 포인트컷 + Adivce + 동작시점
 	@Around("allPointcut()")//advice에 대한 내용 기록
