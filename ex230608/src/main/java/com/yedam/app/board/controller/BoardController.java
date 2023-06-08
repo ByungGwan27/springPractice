@@ -65,6 +65,7 @@ public class BoardController {
 		System.out.println(res);
 		model.addAttribute("res", res);
 		
+		
 		return "redirect:boardList";
 	}
 	
