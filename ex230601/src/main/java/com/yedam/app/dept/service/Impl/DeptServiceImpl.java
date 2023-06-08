@@ -65,6 +65,7 @@ public class DeptServiceImpl implements DeptService {
 	@Override
 	public int deleteDeptList(List<DeptInfoVO> deptVO) {
 		int count = 0;
+		//여러건 삭제
 		for(DeptInfoVO deptInfo : deptVO) {
 			count += deptMapper.deleteDeptInfo(deptInfo.getDepartmentId());
 		}

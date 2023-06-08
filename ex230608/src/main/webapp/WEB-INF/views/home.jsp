@@ -7,15 +7,16 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>Home</title>
 	<style>
-		body {background-image:url("resources/image/돈담곰.jpg");
+		 BODY {background-image:url("../../resources/image/돈담곰.jpg");
           background-repeat:no-repeat; 
           background-size: cover;
+          text-align:center;
          }
 	</style>
 </head>
 <body>
 <h1>
-	Hello world!  
+	Hello world!!  
 </h1>
 
 <P>  The time on the server is ${serverTime}. </P>

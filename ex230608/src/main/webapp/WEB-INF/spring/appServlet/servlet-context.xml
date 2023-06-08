@@ -27,6 +27,16 @@
 		<beans:property name="order" value="2" />
 	</beans:bean>
 	
+	<!-- 3번 -->
+	<beans:bean id="tilesConfigurer" class="org.springframework.web.servlet.view.tiles3.TilesConfigurer">
+		<beans:property name="definitions">
+			<beans:list>
+				<!-- 위치를 알려주는 곳 -->
+				<beans:value>/WEB-INF/tiles.xml</beans:value>
+			</beans:list>
+		</beans:property>
+	</beans:bean>
+	
 	<!-- 1번 -->
 	<beans:bean id="tilesViewResolver" class="org.springframework.web.servlet.view.tiles3.TilesViewResolver">
 		<!-- 동일 우선순위면 오류가 나기 때문에 우선순위를 정해줌 -->

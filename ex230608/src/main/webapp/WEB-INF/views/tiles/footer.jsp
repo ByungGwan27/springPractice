@@ -1,5 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    
+<link href="${pageContext.request.contextPath}/resources/css/bootstrap.min.css" rel="stylesheet">
+
 <style>
       .bd-placeholder-img {
         font-size: 1.125rem;
@@ -73,63 +76,8 @@
         z-index: 1500;
       }
     </style><div class="dropdown position-fixed bottom-0 end-0 mb-3 me-3 bd-mode-toggle">
-      <button class="btn btn-bd-primary py-2 dropdown-toggle d-flex align-items-center"
-              id="bd-theme"
-              type="button"
-              aria-expanded="false"
-              data-bs-toggle="dropdown"
-              aria-label="Toggle theme (auto)">
-        <svg class="bi my-1 theme-icon-active" width="1em" height="1em"><use href="#circle-half"></use></svg>
-        <span class="visually-hidden" id="bd-theme-text">Toggle theme</span>
-      </button>
-      <ul class="dropdown-menu dropdown-menu-end shadow" aria-labelledby="bd-theme-text">
-        <li>
-          <button type="button" class="dropdown-item d-flex align-items-center" data-bs-theme-value="light" aria-pressed="false">
-            <svg class="bi me-2 opacity-50 theme-icon" width="1em" height="1em"><use href="#sun-fill"></use></svg>
-            Light
-            <svg class="bi ms-auto d-none" width="1em" height="1em"><use href="#check2"></use></svg>
-          </button>
-        </li>
-        <li>
-          <button type="button" class="dropdown-item d-flex align-items-center" data-bs-theme-value="dark" aria-pressed="false">
-            <svg class="bi me-2 opacity-50 theme-icon" width="1em" height="1em"><use href="#moon-stars-fill"></use></svg>
-            Dark
-            <svg class="bi ms-auto d-none" width="1em" height="1em"><use href="#check2"></use></svg>
-          </button>
-        </li>
-        <li>
-          <button type="button" class="dropdown-item d-flex align-items-center active" data-bs-theme-value="auto" aria-pressed="true">
-            <svg class="bi me-2 opacity-50 theme-icon" width="1em" height="1em"><use href="#circle-half"></use></svg>
-            Auto
-            <svg class="bi ms-auto d-none" width="1em" height="1em"><use href="#check2"></use></svg>
-          </button>
-        </li>
-      </ul>
-    </div>
-    
 
-<div class="container">
-  <footer class="d-flex flex-wrap justify-content-between align-items-center py-3 my-4 border-top">
-    <p class="col-md-4 mb-0 text-body-secondary">&copy; 2023 Company, Inc</p>
-
-    <a href="/" class="col-md-4 d-flex align-items-center justify-content-center mb-3 mb-md-0 me-md-auto link-body-emphasis text-decoration-none">
-      <svg class="bi me-2" width="40" height="32"><use xlink:href="#bootstrap"/></svg>
-    </a>
-
-    <ul class="nav col-md-4 justify-content-end">
-      <li class="nav-item"><a href="#" class="nav-link px-2 text-body-secondary">Home</a></li>
-      <li class="nav-item"><a href="#" class="nav-link px-2 text-body-secondary">Features</a></li>
-      <li class="nav-item"><a href="#" class="nav-link px-2 text-body-secondary">Pricing</a></li>
-      <li class="nav-item"><a href="#" class="nav-link px-2 text-body-secondary">FAQs</a></li>
-      <li class="nav-item"><a href="#" class="nav-link px-2 text-body-secondary">About</a></li>
-    </ul>
-  </footer>
-</div>
-
-<div class="b-example-divider"></div>
-
-<div class="container">
-  <footer class="d-flex flex-wrap justify-content-between align-items-center py-3 my-4 border-top">
+<footer class="d-flex flex-wrap justify-content-between align-items-center py-3 my-4 border-top">
     <div class="col-md-4 d-flex align-items-center">
       <a href="/" class="mb-3 me-2 mb-md-0 text-body-secondary text-decoration-none lh-1">
         <svg class="bi" width="30" height="24"><use xlink:href="#bootstrap"/></svg>
@@ -143,21 +91,4 @@
       <li class="ms-3"><a class="text-body-secondary" href="#"><svg class="bi" width="24" height="24"><use xlink:href="#facebook"/></svg></a></li>
     </ul>
   </footer>
-</div>
 
-<div class="b-example-divider"></div>
-
-<div class="container">
-  <footer class="py-3 my-4">
-    <ul class="nav justify-content-center border-bottom pb-3 mb-3">
-      <li class="nav-item"><a href="#" class="nav-link px-2 text-body-secondary">Home</a></li>
-      <li class="nav-item"><a href="#" class="nav-link px-2 text-body-secondary">Features</a></li>
-      <li class="nav-item"><a href="#" class="nav-link px-2 text-body-secondary">Pricing</a></li>
-      <li class="nav-item"><a href="#" class="nav-link px-2 text-body-secondary">FAQs</a></li>
-      <li class="nav-item"><a href="#" class="nav-link px-2 text-body-secondary">About</a></li>
-    </ul>
-    <p class="text-center text-body-secondary">&copy; 2023 Company, Inc</p>
-  </footer>
-</div>
-
-<div class="b-example-divider"></div>
