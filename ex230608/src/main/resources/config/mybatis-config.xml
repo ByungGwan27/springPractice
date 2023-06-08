@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+  PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-config.dtd">
+
+<!-- 10페이지 -->
+
+<configuration>
+
+	<settings>
+		<setting name="mapUnderscoreToCamelCase" value="true" />
+		<setting name="jdbcTypeForNull" value="VARCHAR" />
+	</settings>
+	
+	<typeAliases>
+		<!-- 해당 패키지 밑에 있는 모든 class에 대해 as 부여 -->
+		<package name="com.yedam.app" />
+	</typeAliases>
+	
+</configuration>
+  

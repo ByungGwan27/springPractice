@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:mybatis-spring="http://mybatis.org/schema/mybatis-spring"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="http://mybatis.org/schema/mybatis-spring http://mybatis.org/schema/mybatis-spring-1.2.xsd
+		http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd
+		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.3.xsd">
+
+	<!-- 1번 -->
+
+	<!-- 4, 6, 9, 15 페이지 -->
+
+	<!-- 6p. 3번 db.properties 정보 가져오기('Namespaces'에 'context'가 체크되어야 함-->
+	<context:property-placeholder
+		location="classpath:config/db.properties" />
+
+	<!-- 2번 -->
+	<!-- datasource connection pool -->
+	<bean id="hikariConfig" class="com.zaxxer.hikari.HikariConfig">
+		<!-- 4번 value 수정 -->
+		<property name="driverClassName" value="${driver}" />
+		<property name="jdbcUrl" value="${url}" />
+		<property name="username" value="${user}" />
+		<property name="password" value="${pwd}" />
+	</bean>
+	<bean id="dataSource" class="com.zaxxer.hikari.HikariDataSource"
+		destroy-method="close">
+		<constructor-arg ref="hikariConfig" />
+	</bean>
+
+	<!-- 9p 5번. mybatis SqlSessionFactory -->
+	<bean class="org.mybatis.spring.SqlSessionFactoryBean">
+		<property name="dataSource" ref="dataSource" />
+		<!-- 7번 경로 미리 셋팅(아직 파일x)-->
+		<property name="configLocation" value="classpath:config/mybatis-config.xml" />
+		<!-- 8번 'mapper'를 'classpath'쪽에 둠(xml을 분리하는 과정) -->
+		<!-- mapper와 관련된 xml파일을 'src/main/java'쪽에 두는 것이 아닌 다른 곳에 분리 하기 위함 -->
+		<property name="mapperLocations" value="classpath*:mapper/*Mapper.xml" />
+	</bean>
+	
+	<!-- 6번. mapper scan. 아래 경로 수정('Namespaces'에 'mybatis' 체크 되어야함) -->
+	<mybatis-spring:scan
+		base-package="com.yedam.app.**.mapper" />
+		
+	<!-- 15p. 7번 Transaction Manager 설정.  -->
+	<bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+		<property name="dataSource" ref="dataSource" />
+	</bean>
+	
+	<!-- 8번 'Namespaces'에 'tx'추가. 밑에 구문이 없으면, 'baen'이 작동되지 않음 -->
+	<tx:annotation-driven/>
+	
+</beans>
