@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jstl/core" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -40,7 +40,7 @@
             <td>${board.regdate}</td>
         </tr>
     </table>
-    <button type="button">수정</button>
-    <button type="button">삭제</button>
+    <button type="button" onclick="location.href='boardUpdate?bno=${board.bno}'">수정</button>
+    <button type="button" onclick="location.href='boardDelete?bno=${board.bno}'">삭제</button>
 </body>
 </html>

@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jstl/core" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -15,19 +15,19 @@
         <table>
             <tr>
                 <th>제목</th>
-                <td><input type="text" name="" ></td>
+                <td><input type="text" name="title" ></td>
             </tr>
             <tr>
                 <th>작성자</th>
-                <td><input type="text" name="" ></td>
+                <td><input type="text" name="writer" ></td>
             </tr>
             <tr>
                 <th>내용</th>
-                <td><textarea name="" ></textarea></td>
+                <td><textarea name="contents" ></textarea></td>
             </tr>
             <tr>
                 <th>첨부이미지</th>
-                <td><input type="text" name="" ></td>
+                <td><input type="text" name="image" ></td>
             </tr>
         </table>
         <button type="submit">등록</button>
