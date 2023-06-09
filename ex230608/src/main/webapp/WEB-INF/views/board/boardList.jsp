@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -23,7 +24,10 @@
         		<td>${board.bno }</td>
         		<td>${board.title }</td>
         		<td>${board.writer }</td>
-        		<td>${board.regdate }</td>
+        		<td><fmt:formatDate value="${board.regdate }"
+        							pattern="yyyy년MM월dd일"/></td>
+        							<!-- MM 주의. mm은 분 -->
+        							<!-- pattertn 대신 type="date" 를 사용하면 기본적인 출력방식 -->
         	</tr>
         </c:forEach>
     </tbody>

@@ -19,6 +19,7 @@
 	Hello world!!  
 </h1>
 <a href="boardList">boardList</a>
+<img alt="농" src="../../resources/image/돈담곰.jpg">
 <P>  The time on the server is ${serverTime}. </P>
 </body>
 </html>
