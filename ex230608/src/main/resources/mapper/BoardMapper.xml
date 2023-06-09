@@ -29,8 +29,8 @@
 			<if test="writer != null and !writer.equals('')">
 			 writer = #{writer} AND
 			</if>
+		 	bno = #{bno}
 		</where>
-		 bno = #{bno}
 	</select>
 	
 	<!-- 등록 : 필수와 옵션 -->

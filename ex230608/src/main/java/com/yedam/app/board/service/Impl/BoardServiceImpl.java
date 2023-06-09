@@ -11,7 +11,8 @@ import com.yedam.app.board.service.BoardVO;
 
 @Service
 public class BoardServiceImpl implements BoardService {
-
+	
+	
 	@Autowired
 	BoardMapper boardMapper;
 	
