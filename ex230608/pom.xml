@@ -202,7 +202,7 @@
 			<artifactId>tiles-core</artifactId>
 			<version>3.0.8</version>
 		</dependency>
-		
+
 		<!-- 19번 -->
 		<!-- https://mvnrepository.com/artifact/org.apache.tiles/tiles-extras -->
 		<dependency>
@@ -210,8 +210,14 @@
 			<artifactId>tiles-extras</artifactId>
 			<version>3.0.8</version>
 		</dependency>
-
-
+		
+		<!-- 20번. 06.09 mulitpart. Formdata를 처리하는 upload lib -->
+		<!-- https://mvnrepository.com/artifact/commons-fileupload/commons-fileupload -->
+		<dependency>
+			<groupId>commons-fileupload</groupId>
+			<artifactId>commons-fileupload</artifactId>
+			<version>1.4</version>
+		</dependency>
 
 	</dependencies>
 	<build>

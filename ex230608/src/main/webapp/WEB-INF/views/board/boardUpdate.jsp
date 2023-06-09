@@ -8,7 +8,7 @@
 <title>게시글 수정</title>
 </head>
 <body>
-    <form name="updateForm" action="boardUpdate" method="POST">
+    <form name="updateForm" action="boardUpdate" method="POST" onsubmit="return false;">
         <div>
             <h3>게시글 수정</h3>
         </div>
@@ -27,7 +27,7 @@
             </tr>
             <tr>
                 <th>내용</th>
-                <td><textarea name="content"></textarea></td>
+                <td><textarea name="contents">${board.contents }</textarea></td>
             </tr>
             <tr>
                 <th>첨부파일</th>
@@ -39,9 +39,29 @@
             </tr>
         </table>
         <button type="submit">수정완료</button>
-        <button type="button" onclick="location.href=boardList">취소</button>
+        <button type="button" onclick="location.href='boardInfo?bno=${board.bno }'">취소</button>
     </form>
 </body>
 <script>
+	function updateAjax(e) {
+		//Form의 데이터드를 모으는 것, 객체지만 json형태는 아님
+		let boardData = new FormData(document.querySelector("[name='updateForm']"));
+		
+		fetch(updateForm.action, {
+			method : 'post',
+			body : boardData
+		})
+		.then(response => response.json())
+		.then(data => {
+			let message = '결과 : ' +data.result
+						   +', 게시글 번호 : ' + data['board_no'];
+			alert(message);
+		})
+		.catch(err => console.log(err));
+		
+	}
+	
+	document.querySelector('button[type="submit"]')
+			.addEventListener('click', updateAjax);
 </script>
 </html>
