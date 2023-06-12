@@ -3,7 +3,7 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/maven-v4_0_0.xsd">
 
-	<!-- 3, 8, 11, 16(Tiles), 19 페이지 -->
+	<!-- 3, 8, 11, 16(Tiles), 19, 23(스프링세큐리티) 페이지 -->
 
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.yedam</groupId>
@@ -16,6 +16,8 @@
 		<java-version>11</java-version>
 		<!-- 4번 -->
 		<org.springframework-version>5.3.16</org.springframework-version>
+		<!-- 22번 -->
+		<org.springframework.security-version>5.2.5.RELEASE</org.springframework.security-version>
 		<!-- 5번 -->
 		<org.aspectj-version>1.9.0</org.aspectj-version>
 		<org.slf4j-version>1.6.6</org.slf4j-version>
@@ -34,10 +36,29 @@
 				</exclusion>
 			</exclusions>
 		</dependency>
+
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-webmvc</artifactId>
 			<version>${org.springframework-version}</version>
+		</dependency>
+		
+		<!-- 21번. 스프링 세큐리티 -->
+		<!-- Spring Security -->
+		<dependency>
+			<groupId>org.springframework.security</groupId>
+			<artifactId>spring-security-web</artifactId>
+			<version>${org.springframework.security-version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.security</groupId>
+			<artifactId>spring-security-config</artifactId>
+			<version>${org.springframework.security-version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.security</groupId>
+			<artifactId>spring-security-taglibs</artifactId>
+			<version>${org.springframework.security-version}</version>
 		</dependency>
 
 		<!-- AspectJ -->
@@ -210,7 +231,7 @@
 			<artifactId>tiles-extras</artifactId>
 			<version>3.0.8</version>
 		</dependency>
-		
+
 		<!-- 19p. 20번. 06.09 mulitpart. Formdata를 처리하는 upload lib -->
 		<!-- https://mvnrepository.com/artifact/commons-fileupload/commons-fileupload -->
 		<dependency>

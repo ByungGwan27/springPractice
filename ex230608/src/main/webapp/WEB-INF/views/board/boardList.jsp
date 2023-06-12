@@ -7,6 +7,13 @@
 <head>
 <meta charset="UTF-8">
 <title>게시판 목록</title>
+<style>
+	 body {background-image:url("resources/images/돈담곰.jpg");
+         /* background-repeat:no-repeat; 
+         background-size: cover; */
+         text-align:center;
+        }
+</style>
 </head>
 <body>
 <table>
