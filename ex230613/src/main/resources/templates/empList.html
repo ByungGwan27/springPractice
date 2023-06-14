@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>전체 사원 조회</title>
+</head>
+<body>
+  <div>
+    <button type="button" th:onclick="|location.href='@{/empInsert}'|" th:text='등록'></button>
+  	<table>
+      <thead>
+        <tr>
+          <th>employee_id</th>
+          <th>first_name</th>
+          <th>job_id</th>
+          <th>hire_date</th>
+        </tr>
+      </thead>
+      <tbody>
+        <!-- 타임리프의 유일한 태그 'block' -->
+        <th:block th:each="empInfo, stat : ${empList}" >
+          
+          <!-- tr태그도 반복하는 대상 -->
+          <!-- 왼쪽은 임시변수, 오른쪽은 서버가 보내준 값을 담음. -->
+          <!-- 'index'는 상태 변수 -->
+          <tr th:id="${stat.index}"
+          	th:onclick="|location.href='@{/empInfo(employeeId=${empInfo.employeeId})}'|">
+            <td th:text="${empInfo.employeeId}"/>
+            <td th:text="${empInfo.firstName}" />
+            <!-- 템플릿 문법 -->
+            <td >[[${empInfo.jobId}]]</td>
+            <td >[[${#dates.format(empInfo.hireDate, 'yyyy년MM월dd일')}]]</td>
+          </tr>
+        </th:block>
+      </tbody>
+  	</table>
+  </div>
+</body>
+</html>

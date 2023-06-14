@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>사원 등록</title>
+</head>
+<body>
+<div>
+	<form th:action="@{/empInsert}" method="POST" th:object="${empVO}">
+	    <div>
+	      <label for="empId">사원번호</label>
+				<!-- field는 위의 object에 해당하는 값에 어떤 값을 해당하는지 알려줌 -->
+	      <input type="text" id="empId" th:field="*{employeeId}">
+	    </div>
+	    <div>
+	      <label for="name">이름</label>
+	      <input type="text" id="name" th:field="*{lastName}">
+	    </div>
+	    <div>
+	      <label for="email">이메일</label>
+	      <input type="text" id="email" th:field="*{email}">
+	    </div>
+	    <div>
+	      <label for="hireDate">입사일</label>
+	      <input type="text" id="hireDate" th:field="*{hireDate}">
+	    </div>
+	    <div>
+	      <label for="job">업무</label>
+	      <input type="text" id="job" th:field="*{jobId}">
+	    </div>
+	    <div>
+	      <button type="submit">등록</button>
+	      <button type="button" th:onclick="|location.href='@{/empList}'|">목록</button>
+	    </div>
+    </form>
+  </div>
+</body>
+</html>
