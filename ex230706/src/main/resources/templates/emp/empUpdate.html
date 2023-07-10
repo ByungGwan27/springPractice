@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>사원 수정</title>
+</head>
+<body>
+<div>
+	<!-- name값은 fetch를 쓰기위해 -->
+	<form id="frm" name="frm" th:object="${empVO}">
+	    <div>
+	      <label for="empId">사원번호</label>
+				<!-- field는 위의 object에 해당하는 값에 어떤 값을 해당하는지 알려줌 -->
+	      <input type="text" id="empId" th:field="*{employeeId}">
+	    </div>
+	    <div>
+	      <label for="name">이름</label>
+	      <input type="text" id="name" th:field="*{lastName}">
+	    </div>
+	    <div>
+	      <label for="email">이메일</label>
+	      <input type="text" id="email" th:field="*{email}">
+	    </div>
+	    <div>
+	      <label for="hireDate">입사일</label>
+	      <input type="text" id="hireDate" th:field="*{hireDate}">
+	    </div>
+	    <div>
+	      <label for="job">업무</label>
+	      <input type="text" id="job" th:field="*{jobId}">
+	    </div>
+	    <div>
+	      <button type="button" id="save">등록</button>
+	      <button type="reset">취소</button>
+	    </div>
+    </form>
+    <script>
+    	//쿼리 스트링 방식 -> 리퀘스트 바디없이 vo형식으로 받아도 됨
+    	/* $("#save").on("click", function() {
+    		$.ajax("employees", {
+    			data: $("#frm").serialize()
+    		}).done(result => {
+    			alert("수정완료")
+    		})
+    	}) */
+    	
+    	//json방식, get은 json안됨
+    	/* $("#save").on("click", function() {
+    		$.ajax("employees", {
+    			method:"put",
+    			contentType : "application/json",
+    			data: JSON.stringify($("#frm").serializeObject())
+    		}).done(result => {
+    			alert("수정완료")
+    		})
+    	}) */
+    	
+    	$("#save").on("click", function() {
+    		fetch("employees", {
+    			method: 'PUT',
+    			headers: {
+    				'Content-Type' : 'application/json',
+    				//'Content-Type' : 'application/x-www-form-urlencoded',
+    		},
+    		body : JSON.stringify($("#frm").serializeObject()),
+    		//body : new FormData(frm)
+    		});
+    	};
+    </script>
+  </div>
+</body>
+</html>
